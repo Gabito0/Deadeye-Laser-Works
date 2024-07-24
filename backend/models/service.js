@@ -22,7 +22,6 @@ class Service {
       FROM services
       `
     );
-    console.log(results.rows);
     return results.rows;
   }
 

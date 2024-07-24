@@ -10,6 +10,46 @@ const { BadRequestError } = require("../expressError");
 const { ensureCorrectUserOrAdmin, ensureAdmin } = require("../middleware/auth");
 
 /**
+ * GET /user-services => { userServices }
+ *
+ * Returns all user services with user details.
+ *
+ * Response format:
+ *   {
+ *     userServices: [
+ *       {
+ *         userServiceId,
+ *         userId,
+ *         username,
+ *         firstName,
+ *         serviceId,
+ *         title,
+ *         description,
+ *         price,
+ *         isActive,
+ *         confirmedPrice,
+ *         isCompleted,
+ *         additionInfo,
+ *         confirmationCode,
+ *         requestedDate,
+ *         fulfilledDate
+ *       },
+ *       ...
+ *     ]
+ *   }
+ *
+ * Authorization required: admin
+ */
+router.get("/", ensureAdmin, async function (req, res, next) {
+  try {
+    const userServices = await UserService.getAllUserServices();
+    return res.json({ userServices });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+/**
  * GET /user-services/:username => { userServices }
  *
  * Retrieves all services associated with a specific user.
@@ -50,6 +90,7 @@ router.get(
       );
       return res.json({ userServices });
     } catch (err) {
+      console.error("Error fetching user services:", err);
       return next(err);
     }
   }
@@ -61,7 +102,7 @@ router.get(
  * Adds a service to a user.
  *
  * Request body:
- *   { serviceId, confirmedPrice, additionInfo }
+ *   { username, serviceId, confirmedPrice, additionInfo }
  *
  * Returns:
  *   { userService:

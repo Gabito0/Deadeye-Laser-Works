@@ -31,5 +31,5 @@
     }
   },
   "required": ["firstName", "lastName", "email", "birthDate"],
-  "additionalProperties": false
+  "additionalProperties": true
 }

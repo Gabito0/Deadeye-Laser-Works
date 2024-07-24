@@ -1,7 +1,7 @@
 \echo 'Delete and recreate deadeye_laserworks db?'
 \prompt 'Return for yes or control-C to cancel > ' foo
 
-DROP DATABASE deadeye_laserworks;
+DROP DATABASE IF EXISTS deadeye_laserworks;
 CREATE DATABASE deadeye_laserworks;
 \connect deadeye_laserworks
 

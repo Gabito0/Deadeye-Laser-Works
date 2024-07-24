@@ -31,6 +31,7 @@ describe("GET /:username", function () {
       user: {
         username: "u1",
         firstName: "U1F",
+        id: 1,
         lastName: "U1L",
         email: "user1@user.com",
         birthDate: expect.any(String),
@@ -52,6 +53,7 @@ describe("GET /:username", function () {
         username: "u1",
         firstName: "U1F",
         lastName: "U1L",
+        id: 1,
         email: "user1@user.com",
         birthDate: expect.any(String),
         status: "regular",
@@ -92,6 +94,7 @@ describe("PUT /users/:username", function () {
         lastName: "NewLast",
         email: "newemail@example.com",
         birthDate: "2000-01-01",
+        status: "regular",
       })
       .set("authorization", `Bearer ${u1Token}`);
     expect(resp.statusCode).toEqual(200);
@@ -103,6 +106,10 @@ describe("PUT /users/:username", function () {
         email: "newemail@example.com",
         birthDate: expect.any(String),
         isActive: true,
+        id: 1,
+        isVerified: false,
+        lastName: "NewLast",
+        status: "regular",
       },
     });
   });
@@ -173,6 +180,7 @@ describe("PATCH /users/:username/deactivate", function () {
         email: "user1@user.com",
         birthDate: expect.any(String),
         status: "regular",
+        id: 1,
         isVerified: false,
         isActive: false,
       },
@@ -196,6 +204,7 @@ describe("PATCH /users/:username/deactivate", function () {
         firstName: "U1F",
         lastName: "U1L",
         email: "user1@user.com",
+        id: 1,
         birthDate: expect.any(String),
         status: "regular",
         isVerified: false,
@@ -290,6 +299,7 @@ describe("PATCH /users/:username/activate", function () {
         username: "u1",
         firstName: "U1F",
         lastName: "U1L",
+        id: 1,
         email: "user1@user.com",
         birthDate: expect.any(String),
         status: "regular",
@@ -309,6 +319,7 @@ describe("PATCH /users/:username/activate", function () {
         username: "u1",
         firstName: "U1F",
         lastName: "U1L",
+        id: 1,
         email: "user1@user.com",
         birthDate: expect.any(String),
         status: "regular",

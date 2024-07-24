@@ -17,6 +17,67 @@ beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
+/************************************** GET /user-services */
+
+describe("GET /user-services", function () {
+  test("works for admin", async function () {
+    const resp = await request(app)
+      .get(`/user-services`)
+      .set("authorization", `Bearer ${adminToken}`);
+    expect(resp.statusCode).toEqual(200);
+    expect(resp.body).toEqual({
+      userServices: [
+        {
+          userServiceId: expect.any(Number),
+          userId: expect.any(Number),
+          username: "u1",
+          firstName: "U1F",
+          serviceId: expect.any(Number),
+          title: "Service1",
+          description: "Description1",
+          price: "100.00",
+          isActive: true,
+          confirmedPrice: "100.00",
+          isCompleted: false,
+          additionInfo: "Additional info for user 1 service 1",
+          confirmationCode: "CONFIRM123",
+          requestedDate: expect.any(String),
+          fulfilledDate: expect.any(String),
+        },
+        {
+          userServiceId: expect.any(Number),
+          userId: expect.any(Number),
+          username: "u1",
+          firstName: "U1F",
+          serviceId: expect.any(Number),
+          title: "Service2",
+          description: "Description2",
+          price: "200.00",
+          isActive: true,
+          confirmedPrice: "200.00",
+          isCompleted: true,
+          additionInfo: "Additional info for user 1 service 2",
+          confirmationCode: "CONFIRM456",
+          requestedDate: expect.any(String),
+          fulfilledDate: null,
+        },
+      ],
+    });
+  });
+
+  test("unauth for non-admin user", async function () {
+    const resp = await request(app)
+      .get(`/user-services`)
+      .set("authorization", `Bearer ${u1Token}`);
+    expect(resp.statusCode).toEqual(401);
+  });
+
+  test("unauth for anon", async function () {
+    const resp = await request(app).get(`/user-services`);
+    expect(resp.statusCode).toEqual(401);
+  });
+});
+
 /************************************** POST /user-services/:username */
 
 describe("POST /user-services/:username", function () {

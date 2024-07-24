@@ -16,7 +16,7 @@ require("dotenv").config();
 const { SECRET_KEY } = require("../config");
 const EMAIL_SECRET = process.env.EMAIL_SCERET_KEY;
 const GMAIL_USER = process.env.GMAIL_USER;
-
+const { ensureCorrectUserOrAdmin } = require("../middleware/auth");
 /** POST /auth/token:  { username, password } => { token }
  *
  * Returns JWT token which can be used to authenticate further requests.
@@ -77,12 +77,39 @@ router.post("/register", async function (req, res, next) {
 router.get("/confirmation/:token", async (req, res, next) => {
   try {
     const { user: username } = jwt.verify(req.params.token, EMAIL_SECRET);
-    await User.verifyUser(username);
-
-    return res.json({ success: "true" });
+    const user = await User.verifyUser(username);
+    return res.json({ user });
   } catch (err) {
     return next(err);
   }
 });
 
+/**
+ * POST /send-verification/:username
+ *
+ * Sends a verification email to the user.
+ *
+ * Path parameters:
+ *   - username: The username of the user to send the verification email to.
+ *
+ * Body parameters:
+ *   - email: The email address to send the verification email to.
+ *
+ * Authorization required: correct user or admin
+ */
+router.post(
+  "/send-verification/:username",
+  ensureCorrectUserOrAdmin,
+  async (req, res, next) => {
+    try {
+      const { email } = req.body;
+      const username = req.params.username;
+
+      sendConfirmationEmail(EMAIL_SECRET, username, GMAIL_USER, email, next);
+      return res.json({ success: true });
+    } catch (err) {
+      return next(err);
+    }
+  }
+);
 module.exports = router;

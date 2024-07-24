@@ -32,7 +32,8 @@ class User {
                   email,
                   status AS "status",
                   is_verified as "isVerified",
-                  is_active as "isActive"
+                  is_active as "isActive",
+                  birth_date AS "birthDate"
            FROM users
            WHERE username = $1`,
       [username]
@@ -112,7 +113,7 @@ class User {
       `UPDATE users
        SET is_verified = true
        WHERE username = $1
-       RETURNING username, first_name AS "firstName", last_name AS "lastName", email, birth_date AS "birthDate", status, is_verified as "isVerified", is_active as "isActive"`,
+       RETURNING id, username, first_name AS "firstName", last_name AS "lastName", email, birth_date AS "birthDate", status, is_verified as "isVerified", is_active as "isActive"`,
       [username]
     );
 
@@ -134,7 +135,8 @@ class User {
    */
   static async getUser(username) {
     const userRes = await db.query(
-      `SELECT username,
+      `SELECT     id,
+                  username,
                   password,
                   first_name AS "firstName",
                   last_name AS "lastName",
@@ -169,7 +171,15 @@ class User {
       `UPDATE users
      SET is_active = FALSE
      WHERE username = $1
-     RETURNING username, first_name AS "firstName", last_name AS "lastName", email, birth_date AS "birthDate", status, is_verified as "isVerified", is_active as "isActive"`,
+     RETURNING id,
+                  username,
+                  first_name AS "firstName",
+                  last_name AS "lastName",
+                  email,
+                  birth_date AS "birthDate",
+                  status AS "status",
+                  is_verified as "isVerified",
+                  is_active as "isActive"`,
       [username]
     );
 
@@ -192,7 +202,15 @@ class User {
       `UPDATE users
      SET is_active = true
      WHERE username = $1
-     RETURNING username, first_name AS "firstName", last_name AS "lastName", email, birth_date AS "birthDate", status, is_verified as "isVerified", is_active as "isActive"`,
+     RETURNING id,
+                  username,
+                  first_name AS "firstName",
+                  last_name AS "lastName",
+                  email,
+                  birth_date AS "birthDate",
+                  status AS "status",
+                  is_verified as "isVerified",
+                  is_active as "isActive"`,
       [username]
     );
 
@@ -267,12 +285,15 @@ class User {
     const querySql = `UPDATE users 
                       SET ${setCols} 
                       WHERE username = ${usernameVarIdx} 
-                      RETURNING username,
-                                first_name AS "firstName",
-                                last_name AS "lastName",
-                                email,
-                                birth_date AS "birthDate",
-                                is_active AS "isActive"`;
+                      RETURNING id,
+                      username,
+                      first_name AS "firstName",
+                      last_name AS "lastName",
+                      email,
+                      birth_date AS "birthDate",
+                      status AS "status",
+                      is_verified as "isVerified",
+                      is_active as "isActive"`;
     const result = await db.query(querySql, [...values, username]);
     const user = result.rows[0];
 

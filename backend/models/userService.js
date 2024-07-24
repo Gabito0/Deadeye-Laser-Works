@@ -187,6 +187,48 @@ class UserService {
     user.services = services;
     return user;
   }
+
+  /**
+   * Get all user services with user details.
+   *
+   * @returns {Array} - An array of service objects associated with users.
+   *   Each object contains: { userServiceId, userId, username, firstName, serviceId, title, description, price, isActive, confirmedPrice, isCompleted, additionInfo, confirmationCode, requestedDate, fulfilledDate }
+   * @throws {NotFoundError} - If no services are found.
+   */
+  static async getAllUserServices() {
+    const result = await db.query(
+      `
+      SELECT 
+        us.id AS "userServiceId",
+        us.user_id AS "userId",
+        u.username AS "username",
+        u.first_name AS "firstName",
+        us.service_id AS "serviceId",
+        s.title AS "title",
+        s.description AS "description",
+        s.price AS "price",
+        s.is_active AS "isActive",
+        us.confirmed_price AS "confirmedPrice",
+        us.is_completed AS "isCompleted",
+        us.addition_info AS "additionInfo",
+        us.confirmation_code AS "confirmationCode",
+        us.requested_date AS "requestedDate",
+        us.fulfilled_date AS "fulfilledDate"
+      FROM 
+        users_services us
+      JOIN 
+        users u ON us.user_id = u.id
+      JOIN 
+        services s ON us.service_id = s.id
+      `
+    );
+
+    if (result.rows.length === 0) {
+      throw new NotFoundError(`No user services found`);
+    }
+
+    return result.rows;
+  }
 }
 
 module.exports = UserService;

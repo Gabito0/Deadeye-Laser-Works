@@ -26,17 +26,31 @@ function sendConfirmationEmail(secretKey, username, from, to, next) {
       if (err) {
         return next(err);
       }
-      const url = `http://localhost:3001/auth/confirmation/${emailToken}`;
 
-      transporter.sendMail({
-        from: from,
-        to: to,
-        subject: "Confirm Email",
-        html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`,
-      });
+      const url = process.env.VERIFICATION_URL
+        ? `${process.env.VERIFICATION_URL}/${emailToken}`
+        : `http://localhost:5173/email-verification/${emailToken}`;
+
+      transporter.sendMail(
+        {
+          from: from,
+          to: to,
+          subject: "Confirmation Email",
+          html: `Please click this link to confirm your email: <a href="${url}">${url}</a>`,
+        },
+        (error, info) => {
+          if (error) {
+            return next(error);
+          }
+          return res.json({ success: true });
+        }
+      );
     }
   );
 }
+
+module.exports = sendConfirmationEmail;
+
 module.exports = {
   sendConfirmationEmail,
 };

@@ -31,6 +31,7 @@ describe("authenticate", function () {
       status: "regular",
       isVerified: false,
       isActive: true,
+      birthDate: expect.any(Date),
     });
   });
 
@@ -106,6 +107,7 @@ describe("verifyUser", function () {
     const user = await User.verifyUser("u1");
     expect(user).toEqual({
       username: "u1",
+      id: 1,
       firstName: "U1F",
       lastName: "U1L",
       email: "user1@user.com",
@@ -133,6 +135,7 @@ describe("getUser", function () {
       username: "u1",
       firstName: "U1F",
       lastName: "U1L",
+      id: 1,
       email: "user1@user.com",
       birthDate: expect.any(Date),
       status: "regular",
@@ -157,6 +160,7 @@ describe("deactivate", function () {
     expect(user).toEqual({
       username: "u1",
       firstName: "U1F",
+      id: 1,
       lastName: "U1L",
       email: "user1@user.com",
       birthDate: expect.any(Date),
@@ -203,6 +207,9 @@ describe("update", function () {
     expect(user).toEqual({
       username: "u1",
       firstName: "NewFirst",
+      id: 1,
+      isVerified: false,
+      status: "regular",
       lastName: "NewLast",
       email: "newemail@test.com",
       birthDate: expect.any(Date),

@@ -18,7 +18,7 @@ const {
  * Returns the details of the user specified by the username parameter.
  *
  * Response format:
- *   { user: { username, firstName, lastName, email, status, isActive, isVerified } }
+ *   { user: { username, firstName, lastName, email, status, isActive, isVerified, birthDate} }
  *
  * Authorization required: correct user or admin
  */
