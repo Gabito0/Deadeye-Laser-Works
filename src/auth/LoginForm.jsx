@@ -128,7 +128,7 @@ const LoginForm = ({ login }) => {
                 <div className="mt-2 text-primary">
                   <div>
                     <p>
-                      Not a Member? <Link to={"/sign-up"}>Sign Up</Link>
+                      Not a Member? <Link to={"/signup"}>Sign Up</Link>
                     </p>
                   </div>
                 </div>
