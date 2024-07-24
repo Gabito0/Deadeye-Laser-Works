@@ -37,7 +37,26 @@ DeadEye Laser Works is an e-commerce website for a laser engraving business. Thi
    git clone <repository>
    ```
 
-2. **Inside both backend and frontend dir**
+2. **Inside backend dir**
+
    ```bash
    npm i
    ```
+
+3. **Inside frontend dir**
+
+   ```bash
+   npm i
+   ```
+
+4. **After installing all libraries in both dir**
+
+   ```bash
+   npm run dev
+   ```
+
+**_Future improvements/implementations_**
+
+- Implemenet a support ticket system
+- Implement a checkout system
+- Improve styling
