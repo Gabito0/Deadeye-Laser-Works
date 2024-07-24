@@ -34,7 +34,7 @@ DeadEye Laser Works is an e-commerce website for a laser engraving business. Thi
 1. **Clone the repository:**
 
    ```bash
-   git clone <repository-url>
+   git clone <repository>
    ```
 
 2. **Inside both backend and frontend dir**
