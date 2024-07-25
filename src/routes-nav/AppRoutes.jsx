@@ -38,7 +38,7 @@ const AppRoutes = ({ login, signup, setIsHomepage }) => {
   const location = useLocation();
 
   useEffect(() => {
-    console.debug("changingLocations", location);
+    // console.debug("changingLocations", location);
     setIsHomepage(location.pathname === "/");
   }, [location, setIsHomepage]);
 

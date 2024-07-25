@@ -24,7 +24,7 @@ const UserOrderList = () => {
         }
         setLoading(false);
       } catch (err) {
-        console.error("UserOrderList fetchUserServices: problem loading", err);
+        // console.error("UserOrderList fetchUserServices: problem loading", err);
         setError(err);
         setLoading(false);
       }

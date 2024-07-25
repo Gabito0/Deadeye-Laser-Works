@@ -22,7 +22,7 @@ const OrderList = () => {
         setUserServices(fetchedUserServices);
         setLoading(false);
       } catch (err) {
-        console.error("OrderList fetchUserServices: problem loading", err);
+        // console.error("OrderList fetchUserServices: problem loading", err);
         setError(err);
         setLoading(false);
       }
@@ -39,7 +39,7 @@ const OrderList = () => {
         await DeadEyeLaserWorksApi.getAllUsersServices();
       setUserServices(updatedUserServices);
     } catch (err) {
-      console.error("OrderList handleComplete: problem completing", err);
+      // console.error("OrderList handleComplete: problem completing", err);
       setError(err);
     }
   };
@@ -63,7 +63,7 @@ const OrderList = () => {
       setUserServices(updatedUserServices);
       setEditUserServiceId(null);
     } catch (err) {
-      console.error("OrderList handleSavePrice: problem saving price", err);
+      // console.error("OrderList handleSavePrice: problem saving price", err);
       setError(err);
     }
   };

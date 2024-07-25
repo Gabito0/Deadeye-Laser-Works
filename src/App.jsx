@@ -33,22 +33,22 @@ function App() {
   const [services, setServices] = useState([]);
   const [isHomepage, setIsHomepage] = useState(false);
 
-  console.debug(
-    "App",
-    "infoLoaded=",
-    infoLoaded,
-    "token=",
-    token,
-    "currentUser=",
-    currentUser,
-    "services",
-    services,
-    "isHomepage=",
-    isHomepage
-  );
+  // console.debug(
+  //   "App",
+  //   "infoLoaded=",
+  //   infoLoaded,
+  //   "token=",
+  //   token,
+  //   "currentUser=",
+  //   currentUser,
+  //   "services",
+  //   services,
+  //   "isHomepage=",
+  //   isHomepage
+  // );
 
   useEffect(() => {
-    console.debug("App useEffect loadUserInfo", "token=", token);
+    // console.debug("App useEffect loadUserInfo", "token=", token);
     async function getcurrentUser() {
       try {
         let services = await DeadEyeLaserWorksApi.getAllServices();
@@ -60,7 +60,7 @@ function App() {
           setCurrentUser(currentUser);
         }
       } catch (err) {
-        console.error("App loadUserInfo: problem loading", err);
+        // console.error("App loadUserInfo: problem loading", err);
         setCurrentUser(null);
       }
 
@@ -82,7 +82,7 @@ function App() {
       isRememberMe = true;
       return { success: true };
     } catch (err) {
-      console.error("signup failed", err);
+      // console.error("signup failed", err);
       return { success: false, err };
     }
   }
@@ -102,7 +102,7 @@ function App() {
       setCurrentUser(currentUser);
       return { success: true };
     } catch (err) {
-      console.error("login failed", err);
+      // console.error("login failed", err);
       return { success: false, err };
     }
   }

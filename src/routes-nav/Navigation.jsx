@@ -11,7 +11,7 @@ import UserContext from "../auth/UserContext";
  */
 const Navigation = ({ logout }) => {
   const { currentUser } = useContext(UserContext);
-  console.debug("Navigation", "current=", currentUser);
+  // console.debug("Navigation", "current=", currentUser);
 
   const [isCollapsed, setIsCollapsed] = useState(true);
 

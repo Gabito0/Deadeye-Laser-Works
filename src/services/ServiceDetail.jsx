@@ -28,7 +28,7 @@ const ServiceDetail = () => {
         let currentService = await DeadEyeLaserWorksApi.getService(serviceId);
         setService(currentService);
       } catch (err) {
-        console.error("ServiceDetail loadServiceInfo: problem loading", err);
+        // console.error("ServiceDetail loadServiceInfo: problem loading", err);
         setError(err);
       } finally {
         setLoading(false);
@@ -40,7 +40,7 @@ const ServiceDetail = () => {
         let reviews = await DeadEyeLaserWorksApi.getServiceReviews(serviceId);
         setReviews(reviews);
       } catch (err) {
-        console.error("ServiceDetail getServiceReviews: problem loading", err);
+        // console.error("ServiceDetail getServiceReviews: problem loading", err);
         setError(err);
       }
     };
@@ -66,7 +66,7 @@ const ServiceDetail = () => {
       setReviews(updatedReviews);
       setEditReviewId(null);
     } catch (err) {
-      console.error("ServiceDetail handleSave: problem saving", err);
+      // console.error("ServiceDetail handleSave: problem saving", err);
     }
   };
 
@@ -89,7 +89,7 @@ const ServiceDetail = () => {
       setReviews(updatedReviews);
       setAddReview(false);
     } catch (err) {
-      console.error("ServiceDetail handleAddReviewSave: problem saving", err);
+      // console.error("ServiceDetail handleAddReviewSave: problem saving", err);
     }
   };
 
@@ -105,7 +105,7 @@ const ServiceDetail = () => {
       );
       setReviews(updatedReviews);
     } catch (err) {
-      console.error("ServiceDetail HandleDelete: problem deleting", err);
+      // console.error("ServiceDetail HandleDelete: problem deleting", err);
     }
   };
 

@@ -11,7 +11,7 @@ import UserContext from "../auth/UserContext";
 const AdminRoute = () => {
   const { currentUser } = useContext(UserContext);
 
-  console.debug("AdminRoute", "currentUser", currentUser);
+  // console.debug("AdminRoute", "currentUser", currentUser);
 
   if (!currentUser || currentUser.status !== "admin") {
     return <Navigate to="/" />;

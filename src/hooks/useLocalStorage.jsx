@@ -21,7 +21,7 @@ const useLocalStorage = (key, firstValue = null, isRememberMe) => {
 
   useEffect(
     function setKeyInLocalStorage() {
-      console.debug("hooks useLocalStorage useEffect", "item=", item);
+      // console.debug("hooks useLocalStorage useEffect", "item=", item);
       if (item === null) {
         localStorage.removeItem(key);
       }

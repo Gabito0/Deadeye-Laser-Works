@@ -20,17 +20,17 @@ const SignupForm = ({ signup }) => {
   const [formErrors, setFormErrors] = useState([]);
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  console.debug(
-    "SignupForm",
-    "signup=",
-    typeof signup,
-    "formData=",
-    formData,
-    "confirmPassword=",
-    confirmPassword,
-    "formErrors=",
-    formErrors
-  );
+  // console.debug(
+  //   "SignupForm",
+  //   "signup=",
+  //   typeof signup,
+  //   "formData=",
+  //   formData,
+  //   "confirmPassword=",
+  //   confirmPassword,
+  //   "formErrors=",
+  //   formErrors
+  // );
 
   /** Handles form submission:
    * - Validates that the password and confirmPassword fields match.
@@ -45,7 +45,7 @@ const SignupForm = ({ signup }) => {
     }
     try {
       let result = await signup(formData);
-      console.log(result);
+      // console.log(result);
       if (result.success) {
         navigate("/");
       } else {

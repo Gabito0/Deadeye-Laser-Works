@@ -9,7 +9,7 @@ import "./ServiceCard.css";
  */
 
 const ServiceCard = ({ serviceId, title, description, price }) => {
-  console.log("serviceId", serviceId);
+  // console.log("serviceId", serviceId);
   return (
     <Link
       to={`/services/${serviceId}`}

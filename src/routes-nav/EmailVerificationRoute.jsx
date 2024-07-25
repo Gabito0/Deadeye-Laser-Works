@@ -26,7 +26,7 @@ const EmailVerificationRoute = () => {
           setError("Email verification failed. Please try again.");
         }
       } catch (err) {
-        console.error("Email verification failed:", err);
+        // console.error("Email verification failed:", err);
         setError(
           "An error occurred during email verification. Please try again."
         );

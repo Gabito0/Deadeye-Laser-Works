@@ -40,7 +40,7 @@ const AdminServiceCard = ({ service, onServiceUpdate, onServiceDelete }) => {
       onServiceUpdate(updatedService);
       setIsEditing(false);
     } catch (err) {
-      console.error("AdminServiceCard handleSave: problem saving", err);
+      // console.error("AdminServiceCard handleSave: problem saving", err);
     }
   };
 
@@ -61,7 +61,7 @@ const AdminServiceCard = ({ service, onServiceUpdate, onServiceDelete }) => {
       await DeadEyeLaserWorksApi.deleteService(service.serviceId);
       onServiceDelete(service.serviceId);
     } catch (err) {
-      console.error("AdminServiceCard handleDelete: problem deleting", err);
+      // console.error("AdminServiceCard handleDelete: problem deleting", err);
     }
   };
 
@@ -73,10 +73,10 @@ const AdminServiceCard = ({ service, onServiceUpdate, onServiceDelete }) => {
       );
       onServiceUpdate(updatedService);
     } catch (err) {
-      console.error(
-        "AdminServiceCard handleDeactivate: problem deactivating",
-        err
-      );
+      // console.error(
+      //   "AdminServiceCard handleDeactivate: problem deactivating",
+      //   err
+      // );
     }
   };
 

@@ -10,7 +10,7 @@ import UserContext from "../auth/UserContext";
 const UserRoute = () => {
   const { currentUser } = useContext(UserContext);
 
-  console.debug("UserRoute", "currentUser=", currentUser);
+  .debug("UserRoute", "currentUser=", currentUser);
 
   if (!currentUser) {
     return <Navigate to={"/homepage"} />;

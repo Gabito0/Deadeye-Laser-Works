@@ -40,7 +40,7 @@ const AddServiceForm = ({ onServiceAdd, onCancel }) => {
         isActive: true,
       });
     } catch (err) {
-      console.error("AddServiceForm handleSubmit: problem adding service", err);
+      // console.error("AddServiceForm handleSubmit: problem adding service", err);
     }
   };
 

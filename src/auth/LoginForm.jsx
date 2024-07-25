@@ -29,17 +29,17 @@ const LoginForm = ({ login }) => {
     }
   }, [currentUser]);
 
-  console.debug(
-    "LoginForm",
-    "login=",
-    typeof login,
-    "formData=",
-    formData,
-    "formErrors=",
-    formErrors,
-    "rememberMe",
-    rememberMe
-  );
+  // console.debug(
+  //   "LoginForm",
+  //   "login=",
+  //   typeof login,
+  //   "formData=",
+  //   formData,
+  //   "formErrors=",
+  //   formErrors,
+  //   "rememberMe",
+  //   rememberMe
+  // );
 
   /** Handle form submit:
    *
@@ -49,10 +49,10 @@ const LoginForm = ({ login }) => {
   async function handleSubmit(evt) {
     evt.preventDefault();
     let result = await login(formData, rememberMe);
-    console.log(result, "handleLogin");
+    // console.log(result, "handleLogin");
     if (!result.success) {
       setFormErrors(result.err);
-      console.log(result);
+      // console.log(result);
     }
   }
 

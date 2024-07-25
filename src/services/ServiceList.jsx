@@ -21,7 +21,7 @@ const ServiceList = () => {
         setServices(fetchedServices);
         setLoading(false);
       } catch (err) {
-        console.error("ServiceList fetchServices: problem loading", err);
+        // console.error("ServiceList fetchServices: problem loading", err);
         setError(err);
         setLoading(false);
       }

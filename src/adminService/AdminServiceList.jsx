@@ -21,7 +21,7 @@ const AdminServiceList = () => {
         const fetchedServices = await DeadEyeLaserWorksApi.getAllServices();
         setServices(fetchedServices);
       } catch (err) {
-        console.error("AdminServiceList fetchServices: problem loading", err);
+        // console.error("AdminServiceList fetchServices: problem loading", err);
       }
     };
 
