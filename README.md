@@ -14,6 +14,10 @@ DeadEye Laser Works is an e-commerce website for a laser engraving business. Thi
 
 ### Admin Page
 
+**Admin Login info**
+username: adminUser
+password: password
+
 - **Service Management:**
   - Create new services or deactivate existing services, such as deals.
 - **Order Management:**
@@ -55,7 +59,7 @@ DeadEye Laser Works is an e-commerce website for a laser engraving business. Thi
    npm run dev
    ```
 
-**_Future improvements/implementations_**
+**Future improvements/implementations**
 
 - Implemenet a support ticket system
 - Implement a checkout system
