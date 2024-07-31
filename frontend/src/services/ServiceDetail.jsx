@@ -128,14 +128,13 @@ const ServiceDetail = () => {
               <p className="card-text">
                 <strong>Price:</strong> ${service.price}
               </p>
-              {currentUser && (
-                <Link
-                  to={`/services/${serviceId}/add-user-service`}
-                  className="btn btn-primary mt-3 rounded"
-                >
-                  Add this Service
-                </Link>
-              )}
+
+              <Link
+                to={`/services/${serviceId}/add-user-service`}
+                className="btn btn-primary mt-3 rounded"
+              >
+                Add this Service
+              </Link>
             </>
           ) : (
             <p>Service not found.</p>
