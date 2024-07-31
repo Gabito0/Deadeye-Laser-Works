@@ -83,7 +83,8 @@ class Review {
     `,
       [reviewId]
     );
-
+    const keys = Object.keys(data);
+    if (keys.length === 0) throw new BadRequestError("No data");
     const checkReview = reviewRes.rows[0];
     if (!checkReview) throw new NotFoundError(`No review: ${reviewId}`);
 
