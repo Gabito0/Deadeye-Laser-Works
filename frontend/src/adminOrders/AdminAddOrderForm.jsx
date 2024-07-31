@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import DeadEyeLaserWorksApi from "../api/api";
 import UserContext from "../auth/UserContext";
 import LoadingSpinner from "../common/LoadingSpinner";
@@ -19,7 +19,11 @@ const AdminAddOrderForm = () => {
   });
   const [service, setService] = useState(null);
   const [error, setError] = useState(null);
+  // Navigates users to login if they reach this page
   const navigate = useNavigate();
+  if (!currentUser) {
+    return <Navigate to="/login" />;
+  }
 
   useEffect(() => {
     async function getService() {
@@ -49,13 +53,18 @@ const AdminAddOrderForm = () => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      await DeadEyeLaserWorksApi.addUserService(
-        currentUser.username,
-        +serviceId,
-        +formData.confirmedPrice,
-        formData.additionInfo
-      );
-      navigate(`/services`);
+      /**Checks if user is logged in submitting */
+      if (!currentUser) {
+        navigate("/login");
+      } else {
+        await DeadEyeLaserWorksApi.addUserService(
+          currentUser.username,
+          +serviceId,
+          +formData.confirmedPrice,
+          formData.additionInfo
+        );
+        navigate(`/services`);
+      }
     } catch (err) {
       console.error(
         "AdminAddOrderForm handleSubmit: problem adding service",

@@ -10,20 +10,23 @@ import StarRating from "../common/StarRating";
 const ReviewForm = ({ review, onSave, onCancel }) => {
   const [formData, setFormData] = useState({
     reviewText: review.reviewText,
-    rating: review.rating,
+    rating: review.rating ? parseInt(review.rating, 10) : 0,
   });
 
   useEffect(() => {
     setFormData({
       reviewText: review.reviewText,
-      rating: review.rating,
+      rating: review.rating ? parseInt(review.rating, 10) : 0,
     });
   }, [review]);
 
   /** Handle form input changes */
   const handleChange = (evt) => {
     const { name, value } = evt.target;
-    setFormData((data) => ({ ...data, [name]: value }));
+    setFormData((data) => ({
+      ...data,
+      [name]: name === "rating" ? parseInt(value, 10) : value,
+    }));
   };
 
   /** Handle form submission */
