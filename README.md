@@ -10,6 +10,10 @@ DeadEye Laser Works is an e-commerce website for a laser engraving business. Thi
 - **Backend:** Express.js, Node.js
 - **Frontend:** React, Vite
 
+## Entity Relationship Diagram(ERD)
+
+<img src="/schema.png" alt="Entity relationship diagram for Deadeye laser Works">
+
 ## Features
 
 ### Admin Page
