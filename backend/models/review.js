@@ -87,22 +87,16 @@ class Review {
     const checkReview = reviewRes.rows[0];
     if (!checkReview) throw new NotFoundError(`No review: ${reviewId}`);
 
-    const { setCols, values } = sqlForPartialUpdate(data, {
-      reviewText: "review_text",
-      rating: "rating",
-      time: "time",
-    });
-
-    const reviewIdVarIdx = "$" + (values.length + 1);
-
-    const querySql = `UPDATE reviews
-                      SET ${setCols}
-                      WHERE id = ${reviewIdVarIdx}
+    const result = await db.query(
+      `UPDATE reviews
+                      SET review_text= $1, rating=$2
+                      WHERE id = $3
                       RETURNING id AS "reviewId",
                                 review_text AS "reviewText",
                                 rating,
-                                time`;
-    const result = await db.query(querySql, [...values, reviewId]);
+                                time`,
+      [data.reviewText, data.rating, reviewId]
+    );
 
     const review = result.rows[0];
     if (!review) throw new NotFoundError(`No review: ${reviewId}`);
