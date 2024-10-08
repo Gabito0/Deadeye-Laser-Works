@@ -1,7 +1,6 @@
 "use strict";
 
 /** Database setup for Deadeye Laserworks */
-
 const { Client } = require("pg");
 const { getDatabaseUri } = require("./config");
 
@@ -12,6 +11,7 @@ if (process.env.NODE_ENV === "production") {
   db = new Client({
     connectionString: getDatabaseUri(),
     ssl: {
+      ca: process.env.AIVEN_CA_CERT,
       rejectUnauthorized: false,
     },
   });
